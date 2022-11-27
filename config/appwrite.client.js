@@ -8,4 +8,5 @@ const client = new Client()
   .setSelfSigned();
 
 const user = new Users(client);
+
 module.exports = user;
