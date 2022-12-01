@@ -8,9 +8,9 @@ module.exports = addtodo = async (req, res) => {
     try {
       ifExist.todo.push({ title: title });
       await ifExist.save();
-      return res.send(ifExist);
+      return res.send({ sucess: true });
     } catch (error) {
-      return res.status(401).send({ msg: error.message });
+      return res.status(401).send({ msg: error.message, sucess: false });
     }
     // console.log(ifExist);
   }
@@ -21,8 +21,8 @@ module.exports = addtodo = async (req, res) => {
         title: title,
       },
     });
-    return res.send(data);
+    return res.send({ sucess: true });
   } catch (error) {
-    return res.send({ msg: error.message });
+    return res.send({ msg: error.message, sucess: false });
   }
 };
