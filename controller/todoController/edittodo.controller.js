@@ -11,8 +11,8 @@ const edittodo = async (req, res) => {
     if (!data) return res.status(401).send({ msg: "Invalid uid" });
     const index = data.todo.findIndex((e) => e._id == todoId);
     data.todo[index].title = title;
-    await data.save();
-    return res.status(201).send(data.todo[index]);
+    const editData = await data.save();
+    return res.status(201).send({ msg: "sucess", todos: editData.todo });
   } catch (error) {
     return res.status(401).send({ msg: error.message });
   }

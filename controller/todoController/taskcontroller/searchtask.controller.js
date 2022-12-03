@@ -14,7 +14,7 @@ const searchtask = async (req, res) => {
     const searchData = data.todo[todoIndex].task.filter((e) =>
       e.title.toLowerCase().includes(search.toLowerCase())
     );
-    return res.status(200).send(searchData);
+    return res.status(200).send({ msg: "sucess", task: searchData });
   } catch (error) {
     return res.status(401).send({ msg: error.message });
   }

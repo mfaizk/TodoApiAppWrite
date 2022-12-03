@@ -13,8 +13,10 @@ const addtask = async (req, res) => {
     if (!data) return res.status(401).send({ msg: "Invalid data" });
     const index = data.todo.findIndex((e) => e._id == todoId);
     data.todo[index].task.push({ title });
-    await data.save();
-    return res.status(201).send(data.todo[index].task);
+    const modData = await data.save();
+    return res
+      .status(201)
+      .send({ msg: "sucess", task: modData.todo[index].task });
   } catch (error) {
     return res.status(401).send({ msg: error.message });
   }

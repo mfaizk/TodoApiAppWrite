@@ -1,6 +1,7 @@
 const TODO = require("../../../model/user.model");
 
 const gettask = async (req, res) => {
+  console.log("runed");
   const { uid, todoId, sort } = req.params;
 
   if (!(uid && todoId))

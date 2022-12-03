@@ -7,8 +7,9 @@ module.exports = addtodo = async (req, res) => {
   if (ifExist) {
     try {
       ifExist.todo.push({ title: title });
-      await ifExist.save();
-      return res.send({ sucess: true });
+      const data = await ifExist.save();
+      // console.log(data.todo);
+      return res.send({ sucess: true, todos: data.todo });
     } catch (error) {
       return res.status(401).send({ msg: error.message, sucess: false });
     }

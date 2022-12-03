@@ -2,7 +2,7 @@ const TODO = require("../../../model/user.model");
 
 const edittask = async (req, res) => {
   const { uid, todoId, taskId } = req.params;
-  const { title } = req.body;
+  const { title, isCompleted } = req.body;
 
   if (!(uid && todoId && taskId && title))
     return res.status(401).send({ msg: "Insufficient data" });
@@ -17,8 +17,11 @@ const edittask = async (req, res) => {
     );
     if (todoIndex == -1) return res.status(401).send({ msg: "task not found" });
     data.todo[todoIndex].task[taskIndex].title = title;
+    data.todo[todoIndex].task[taskIndex].isCompleted = isCompleted;
     await data.save();
-    return res.status(200).send({ msg: "success" });
+    return res
+      .status(200)
+      .send({ msg: "sucess", task: data.todo[todoIndex].task });
   } catch (error) {
     return res.status(401).send({ msg: error.message });
   }

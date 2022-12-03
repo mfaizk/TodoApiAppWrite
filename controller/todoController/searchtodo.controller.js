@@ -11,7 +11,7 @@ const searchtodo = async (req, res) => {
     const filterData = data.todo.filter((e) =>
       e.title.toLowerCase().includes(text.toLowerCase())
     );
-    return res.status(200).send(filterData);
+    return res.status(200).send({ msg: "sucess", todos: filterData });
   } catch (error) {
     return res.status(401).send({ msg: error.message });
   }

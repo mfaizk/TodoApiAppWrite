@@ -5,6 +5,10 @@ const Task = Schema(
     title: {
       type: String,
     },
+    isCompleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

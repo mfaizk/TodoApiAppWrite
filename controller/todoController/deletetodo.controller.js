@@ -9,10 +9,10 @@ const deletetodo = async (req, res) => {
     if (!data) return res.status(401).send({ msg: "Invalid id" });
     const index = data.todo.findIndex((e) => e._id == todoId);
     if (index == -1) return res.status(401).send({ msg: "No todo found" });
-    console.log(index);
+    // console.log(index);
     data.todo.splice(index, 1);
-    await data.save();
-    return res.status(201).send({ msg: "success" });
+    const modData = await data.save();
+    return res.status(201).send({ msg: "sucess", todos: modData.todo });
   } catch (error) {
     return res.status(401).send({ msg: error.message });
   }
